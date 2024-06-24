@@ -80,11 +80,11 @@ export default function ControlPanel() {
 
 
             {/* Muestra la descripción de la variable seleccionada */}
-            <Typography mt={2} component="p" color="text.secondary">
+            {/* <Typography mt={2} component="p" color="text.secondary">
                 {
                     (selected >= 0) ? items[selected]["description"] : ""
                 }
-            </Typography>
+            </Typography> */}
 
             <Typography ref={descriptionRef} mt={2} component="p" color="text.secondary" />
 		
