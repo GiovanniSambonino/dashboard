@@ -25,7 +25,17 @@ function App() {
     const [originalChartData, setOriginalChartData] = useState([]);
     const [selectedVariable, setSelectedVariable] = useState('all');
 
-    {/* Hook: useEffect */ }
+    {/* Estilos */ }
+
+    const styles = {
+        rowBackground: {
+            display: 'block',
+            backgroundColor: '#7777dd', 
+            padding: '8px', 
+            borderRadius: '4px',
+            marginBottom: '8px', 
+        }
+    };
 
     {/* Función para el efecto secundario a ejecutar y Arreglo de dependencias */ }
 
@@ -252,12 +262,13 @@ function App() {
     return (
         <>
             <Navbar />
-            <Grid xs={12} sm={12} md={12} lg={12}>
-                <TimeNow />
-            </Grid>
-            <Grid container spacing={5} sx={{ mt: 10 }}>
+
+            <Grid container spacing={5} sx={{ mt: 10, bgcolor: '#78deab ' }} >
+                <Grid container item xs={12} alignItems="center" justifyContent="center">
+                    <TimeNow />
+                </Grid>
                 <Grid xs={12} md={12} lg={12} id="indicadores">
-                    <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2 }}>
+                    <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2, ...styles.rowBackground}}>
                         Informacion General
                     </Typography>
                 </Grid>
@@ -278,7 +289,7 @@ function App() {
                 ))}
 
                 <Grid xs={12} md={12} lg={12} id="pronosticos">
-                    <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2 }}>
+                    <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2, ...styles.rowBackground }}>
                         Pronósticos de la Semana
                     </Typography>
                 </Grid>
@@ -295,7 +306,7 @@ function App() {
                 ))}
 
                 <Grid xs={12} md={12} lg={12} id="tendencias">
-                    <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2 }}>
+                    <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2, ...styles.rowBackground }}>
                         Tendencias climáticas
                     </Typography>
                 </Grid>
@@ -305,9 +316,9 @@ function App() {
                 <Grid xs={12} lg={10}>
                     <WeatherChart data={chartData} selectedVariable={selectedVariable} />
                 </Grid>
-                
+
                 <Grid xs={12} md={12} lg={12} id="prodet">
-                    <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2 }}>
+                    <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2, ...styles.rowBackground }}>
                         Pronosticos Detallados
                     </Typography>
                 </Grid>
