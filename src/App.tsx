@@ -30,10 +30,10 @@ function App() {
     const styles = {
         rowBackground: {
             display: 'block',
-            backgroundColor: '#7777dd', 
-            padding: '8px', 
+            backgroundColor: '#7777dd',
+            padding: '8px',
             borderRadius: '4px',
-            marginBottom: '8px', 
+            marginBottom: '8px',
         }
     };
 
@@ -268,8 +268,8 @@ function App() {
                     <TimeNow />
                 </Grid>
                 <Grid xs={12} md={12} lg={12} id="indicadores">
-                    <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2, ...styles.rowBackground}}>
-                        Informacion General
+                    <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2, ...styles.rowBackground }}>
+                        <strong>Informacion General</strong>
                     </Typography>
                 </Grid>
                 <Grid xs={6} md={4} lg={2}>
@@ -290,7 +290,7 @@ function App() {
 
                 <Grid xs={12} md={12} lg={12} id="pronosticos">
                     <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2, ...styles.rowBackground }}>
-                        Pronósticos de la Semana
+                        <strong>Previsión semanal</strong>
                     </Typography>
                 </Grid>
 
@@ -307,7 +307,7 @@ function App() {
 
                 <Grid xs={12} md={12} lg={12} id="tendencias">
                     <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2, ...styles.rowBackground }}>
-                        Tendencias climáticas
+                        <strong>Patrones del clima</strong>
                     </Typography>
                 </Grid>
                 <Grid xs={12} lg={2}>
@@ -319,7 +319,7 @@ function App() {
 
                 <Grid xs={12} md={12} lg={12} id="prodet">
                     <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2, ...styles.rowBackground }}>
-                        Pronosticos Detallados
+                        <strong>Análisis profundo del clima</strong>
                     </Typography>
                 </Grid>
                 <Grid xs={12} md={12} lg={12}>
