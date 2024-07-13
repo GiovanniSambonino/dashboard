@@ -1,30 +1,58 @@
 import { Chart } from "react-google-charts";
 import Paper from '@mui/material/Paper';
 
-export default function WeatherChart({ data }) {
+interface WeatherChartProps {
+    data: any[];
+    selectedVariable: string | null;
+}
+
+export default function WeatherChart({
+    data,
+    selectedVariable,
+}: WeatherChartProps) {
+    const options = {
+        curveType: "function",
+        legend: { position: "right" },
+    };
+
+    let filteredData;
+    if (selectedVariable === "Humedad") {
+        filteredData = data.map((row, index) => {
+            if (index === 0) return ["Hora", "Humedad"];
+            return [row[0], row[2]];
+        });
+    } else if (selectedVariable === "Nubosidad") {
+        filteredData = data.map((row, index) => {
+            if (index === 0) return ["Hora", "Nubosidad"];
+            return [row[0], row[3]];
+        });
+        
+    } else if (selectedVariable === "Precipitación") {
+        filteredData = data.map((row, index) => {
+            if (index === 0) return ["Hora", "Precipitación"];
+            return [row[0], row[1]];
+        });
+        
+    } else {
+        filteredData = data;
+    }
 
     return (
         <Paper
             sx={{
                 p: 2,
-                display: 'flex',
-                flexDirection: 'column'
+                display: "flex",
+                flexDirection: "column",
             }}
         >
             <Chart
                 chartType="LineChart"
-                data={data}
+                data={filteredData}
                 width="100%"
                 height="400px"
-                options={{
-                    title: 'Precipitación, Humedad y Nubosidad vs Hora',
-                    curveType: 'function',
-                    legend: { position: 'right' },
-                    hAxis: { title: 'Hora' },
-                    vAxis: { title: 'Unidades' }
-                }}
+                options={options}
                 legendToggle
-        />
+            />
         </Paper>
-    )
-}	
+    );
+}

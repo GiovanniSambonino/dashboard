@@ -243,14 +243,18 @@ function App() {
                 newChartData = originalChartData;
         }
         setChartData(newChartData);
-    }, [selectedVariable, originalChartData]);
+    }, []);
+
+    const handleVariableChange = (variable: string | null) => {
+        setSelectedVariable(variable);
+    };
 
     return (
         <>
             <Navbar />
             <Grid xs={12} sm={12} md={12} lg={12}>
-                    <TimeNow />
-                </Grid>
+                <TimeNow />
+            </Grid>
             <Grid container spacing={5} sx={{ mt: 10 }}>
                 <Grid xs={12} md={12} lg={12} id="indicadores">
                     <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2 }}>
@@ -266,7 +270,7 @@ function App() {
                         longitude={parseFloat(cityData[4])}
                     />
                 </Grid>
-                
+
                 {indicators.map((indicator, index) => (
                     <Grid key={index} xs={6} md={4} lg={2}>
                         <Indicator {...indicator} />
@@ -295,12 +299,13 @@ function App() {
                         Tendencias climáticas
                     </Typography>
                 </Grid>
-                <Grid xs={12} lg={10}>
-                    <ControlPanel onChange={setSelectedVariable} />
+                <Grid xs={12} lg={2}>
+                    <ControlPanel onVariableChange={handleVariableChange} />
                 </Grid>
                 <Grid xs={12} lg={10}>
-                    <WeatherChart data={chartData} />
+                    <WeatherChart data={chartData} selectedVariable={selectedVariable} />
                 </Grid>
+                
                 <Grid xs={12} md={12} lg={12} id="prodet">
                     <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2 }}>
                         Pronosticos Detallados
