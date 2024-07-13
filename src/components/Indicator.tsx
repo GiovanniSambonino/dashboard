@@ -3,10 +3,17 @@ import Paper from '@mui/material/Paper';
 
 interface Config {
     title?: String;
-    subtitle?: String;
-    value: Number;
+    unit?: String;
+    value: number;
+    min?: number;
+    max?: number;
+    avg?: number;
+    probability?: number;
 }
 export default function Indicator(config: Config) {
+    const convertKelvinToCelsius = (kelvin) => (kelvin - 273.15).toFixed(2); // Conversión de Kelvin a Celsius
+
+
 	return (
         <Paper
             sx={{
@@ -18,29 +25,23 @@ export default function Indicator(config: Config) {
             <Typography component="h2" variant="h6" color="primary" gutterBottom>
                 {config.title} 
             </Typography>
-            <Typography component="p" variant="h4">
-                {config.value.toString()}
-            </Typography>
-            <Typography color="text.secondary" sx={{ flex: 1 }}>
-                {config.subtitle}
-            </Typography>
+            {config.min !== undefined && config.max !== undefined && (
+                <div>
+                    <Typography variant="body1"><strong>Min:</strong> {config.title === 'Temperatura' ? convertKelvinToCelsius(config.min) : config.min} {config.unit}</Typography>
+                    <Typography variant="body1"><strong>Max:</strong> {config.title === 'Temperatura' ? convertKelvinToCelsius(config.max) : config.max} {config.unit}</Typography>
+                    {config.avg !== undefined && <Typography variant="body1"><strong>Prom:</strong> {config.title === 'Temperatura' ? convertKelvinToCelsius(config.avg) : config.avg} {config.unit}</Typography>}
+                </div>
+            )}
+            {config.value !== undefined && (
+                <div>
+                    <Typography variant="body1"><strong>Valor:</strong> {config.value} {config.unit}</Typography>
+                </div>
+            )}
+            {config.probability !== undefined && (
+                <div>
+                    <Typography variant="body1"><strong>Probabilidad:</strong> {config.probability}%</Typography>
+                </div>
+            )}
         </Paper> 
     )
-    /*return (
-        <>
-            {config.title}<br/>
-            {config.value.toString()}<br/>
-            {config.subtitle}
-            
-        </>
-    )*/
 }
-/*
-export default function Indicator() {
-    return (
-       	<>
-            Indicator
-        </> 
-    )
-}
-*/

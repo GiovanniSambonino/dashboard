@@ -4,27 +4,32 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 
-import sunrise from '../assets/sunrise.jpeg'
+interface SummaryProps {
+    day: string;
+    temperature: string;
+    date: string;
+    icon: string;
+}
 
-export default function Summary() {
+export default function Summary(props: SummaryProps) {
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardActionArea>
                 <CardMedia
                     component="img"
                     height="140"
-                    image={sunrise}
-                    alt="Amanecer"
+                    image={`http://openweathermap.org/img/wn/${props.icon}@2x.png`}
+                    alt="weather"
                 />
                 <CardContent>
                     <Typography gutterBottom component="h2" variant="h6" color="primary">
-                        Amanecer
+                        {props.day}
                     </Typography>
                     <Typography component="p" variant="h4">
-                        05:19:08
+                        {props.temperature}
                     </Typography>
                     <Typography color="text.secondary" sx={{ flex: 1 }}>
-                    	en 17 Junio, 2024
+                        {props.date}
                     </Typography>
                 </CardContent>
             </CardActionArea>
