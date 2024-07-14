@@ -21,7 +21,7 @@ function App() {
     const [cityData, setCityData] = useState([])
     const [indicators, setIndicators] = useState([])
     const [summaries, setSummaries] = useState([])
-    const [chartData, setChartData] = useState([["Hora", "Precipitación", "Humedad", "Nubosidad"]]);
+    const [chartData, setChartData] = useState([]);
     const [originalChartData, setOriginalChartData] = useState([]);
     const [selectedVariable, setSelectedVariable] = useState('all');
 
@@ -253,7 +253,8 @@ function App() {
                 newChartData = originalChartData;
         }
         setChartData(newChartData);
-    }, []);
+    }, [selectedVariable, originalChartData]);
+    
 
     const handleVariableChange = (variable: string | null) => {
         setSelectedVariable(variable);
@@ -264,7 +265,7 @@ function App() {
             <Navbar />
 
             <Grid container spacing={5} sx={{ mt: 10, bgcolor: '#78deab ' }} >
-                <Grid container item xs={12} alignItems="center" justifyContent="center">
+                <Grid xs={12} alignItems="center" justifyContent="center">
                     <TimeNow />
                 </Grid>
                 <Grid xs={12} md={12} lg={12} id="indicadores">
@@ -316,7 +317,6 @@ function App() {
                 <Grid xs={12} lg={10}>
                     <WeatherChart data={chartData} selectedVariable={selectedVariable} />
                 </Grid>
-
                 <Grid xs={12} md={12} lg={12} id="prodet">
                     <Typography variant="h4" component="h1" sx={{ mt: 4, mb: 2, ...styles.rowBackground }}>
                         <strong>Análisis profundo del clima</strong>
